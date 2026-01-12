@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // enable JS-only reveal styles
+  document.documentElement.classList.add("js");
+
   // Set current year in footer
   const yearSpan = document.getElementById("year");
   if (yearSpan) {
@@ -55,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     revealElements.forEach((el) => observer.observe(el));
   } else {
-    // Fallback
     revealElements.forEach((el) => el.classList.add("in-view"));
   }
 });
