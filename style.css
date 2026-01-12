@@ -43,12 +43,17 @@ body {
   padding: 0.75rem 1.5rem;
 }
 
+/* Make your name clickable without looking like a default link */
 .logo {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-size: 0.8rem;
   color: var(--accent-dark);
+  text-decoration: none;
+}
+.logo:hover {
+  opacity: 0.85;
 }
 
 .header-right {
@@ -195,8 +200,12 @@ main {
 /* HERO IMAGE */
 .hero-image {
   justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* If you ever bring the placeholder back */
 .hero-placeholder {
   width: 260px;
   height: 260px;
@@ -210,6 +219,15 @@ main {
   color: var(--accent-dark);
   text-align: center;
   padding: 1rem;
+}
+
+/* Your actual hero logo */
+.hero-logo {
+  width: 260px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 24px; /* remove if you want sharp corners */
 }
 
 /* GENERIC SECTION PAGES */
@@ -233,7 +251,6 @@ main {
 }
 
 /* PROJECTS */
-/* PROJECTS */
 .projects-grid {
   display: grid;
   gap: 1.5rem;
@@ -242,7 +259,7 @@ main {
 }
 
 .project-card {
-  display: flex;                 /* stack image + content */
+  display: flex;
   flex-direction: column;
   background: #ffffff;
   border-radius: 24px;
@@ -257,10 +274,12 @@ main {
   border-color: rgba(6, 66, 50, 0.18);
 }
 
-.project-image {
+/* Default project image style */
+.project-image,
+.project2-image {
   width: 100%;
-  height: 200px;                 /* consistent thumbnail height */
-  object-fit: cover;             /* crop tall images nicely */
+  height: 200px;
+  object-fit: cover;
   object-position: top center;
   display: block;
   border-bottom: 1px solid rgba(6, 66, 50, 0.1);
@@ -268,7 +287,7 @@ main {
 
 .project-content {
   padding: 1.1rem 1.2rem 1.3rem;
-  flex: 1;                       /* lets content stretch evenly */
+  flex: 1;
 }
 
 .project-content h3 {
@@ -377,7 +396,7 @@ main {
   border-color: #f5babb;
 }
 
-
+/* Contact info */
 .contact-details {
   margin-top: 1.2rem;
   font-size: 0.95rem;
@@ -391,7 +410,6 @@ main {
   color: #fff5f2;
   text-decoration: underline;
 }
-
 
 /* CONTACT PAGE UPGRADE */
 .contact-wrapper {
@@ -423,7 +441,7 @@ main {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: rgba(255, 245, 242, 0.06); /* soft light overlay */
+  background: rgba(255, 245, 242, 0.06);
   padding: 1.2rem 1.4rem;
   border-radius: 18px;
   border: 1px solid rgba(245, 186, 187, 0.25);
@@ -465,7 +483,6 @@ main {
   text-decoration: underline;
 }
 
-
 /* FOOTER */
 .site-footer {
   text-align: center;
@@ -474,14 +491,20 @@ main {
   color: var(--text-muted);
 }
 
-/* REVEAL ANIMATIONS */
+/* REVEAL ANIMATIONS (FAIL-SAFE) */
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* Only hide when JS confirms it's running */
+.js .reveal {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.reveal.in-view {
+.js .reveal.in-view {
   opacity: 1;
   transform: translateY(0);
 }
@@ -527,13 +550,9 @@ main {
   }
 }
 
-/* DARK THEME OVERRIDES
-   Uses the same core colours:
-   #FFF5F2, #F5BABB, #568F87, #064232
-*/
+/* DARK THEME OVERRIDES */
 body.theme-dark {
   background: radial-gradient(circle at top, #064232 0, #03251c 40%, #03251c 100%);
-  /* make text light + accenty */
   --text-main: #fff5f2;
   --text-muted: #f5babb;
   color: var(--text-main);
@@ -541,17 +560,17 @@ body.theme-dark {
 
 /* HEADER */
 body.theme-dark .site-header {
-  background: rgba(6, 66, 50, 0.95); /* #064232 with opacity */
-  border-bottom-color: rgba(245, 186, 187, 0.6); /* #F5BABB */
+  background: rgba(6, 66, 50, 0.95);
+  border-bottom-color: rgba(245, 186, 187, 0.6);
 }
 
 body.theme-dark .logo,
 body.theme-dark .nav a {
-  color: #fff5f2; /* #FFF5F2 */
+  color: #fff5f2;
 }
 
 body.theme-dark .nav a::after {
-  background: #f5babb; /* #F5BABB underline */
+  background: #f5babb;
 }
 
 body.theme-dark .theme-toggle {
@@ -562,16 +581,16 @@ body.theme-dark .theme-toggle {
 
 /* HERO */
 body.theme-dark .hero {
-  background: linear-gradient(135deg, #064232, #568f87); /* deep green → teal */
+  background: linear-gradient(135deg, #064232, #568f87);
 }
 
 body.theme-dark .hero-subtitle {
   color: var(--text-muted);
 }
 
-/* SECTIONS (page cards) */
+/* SECTIONS */
 body.theme-dark .section {
-  background: #064232; /* deep green */
+  background: #064232;
 }
 
 body.theme-dark .section-title {
@@ -582,14 +601,14 @@ body.theme-dark .section-intro {
   color: var(--text-muted);
 }
 
-/* ABOUT stays teal so it still feels like a separate page */
+/* ABOUT stays teal */
 body.theme-dark .section-about {
-  background: #568f87; /* #568F87 */
+  background: #568f87;
 }
 
-/* CONTACT gets the deepest page */
+/* CONTACT gets deeper */
 body.theme-dark .section-contact {
-  background: #03251c; /* darker tint of #064232 */
+  background: #03251c;
 }
 
 /* PROJECT CARDS */
@@ -604,7 +623,7 @@ body.theme-dark .project-content h3 {
 }
 
 body.theme-dark .project-meta {
-  color: var(--text-muted); /* #F5BABB */
+  color: var(--text-muted);
 }
 
 body.theme-dark .project-links a {
@@ -616,11 +635,6 @@ body.theme-dark .tools-grid span {
   border-color: rgba(245, 186, 187, 0.6);
   background: rgba(245, 186, 187, 0.08);
   color: #fff5f2;
-}
-
-/* CONTACT LINKS */
-body.theme-dark .section-contact .contact-details a {
-  color: #f5babb;
 }
 
 /* FOOTER */
